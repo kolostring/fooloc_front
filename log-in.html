@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log-in</title>
+  <link rel="shortcut icon" href="favicon.svg" type="image/x-icon">
+  
+  <link rel="stylesheet" href="global.css">
+  <style>
+    #form{
+      width: 70vw;
+      max-width: 400px;
+    }
+
+    #buttons{
+      display: flex;
+      width: 100%;
+      margin-top: 3rem;
+      gap: 0.6rem;
+      justify-content: end;
+    }
+
+    section{
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      height: fit-content;
+    }
+
+    body{
+      max-height: 100svh;
+      overflow: hidden;
+    }
+
+    .marquee{
+      position: absolute;
+      height: fit-content;
+      inset: 0;
+      margin-block: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <figure class="marquee">
+    <div>
+      <img src="./assets/drink.svg" alt="">
+      <img src="./assets/egg.svg" alt="">
+      <img src="./assets/eggalt.svg" alt="">
+      <img src="./assets/fastfood.svg" alt="">
+      <img src="./assets/grocery.svg" alt="">
+      <img src="./assets/hamburger.svg" alt="">
+      <img src="./assets/icecream.svg" alt="">
+      <img src="./assets/orange.svg" alt="">
+      <img src="./assets/pizza.svg" alt="">
+      <img src="./assets/restaurant.svg" alt="">
+      <img src="./assets/tea.svg" alt="">
+
+      <img src="./assets/drink.svg" alt="">
+      <img src="./assets/egg.svg" alt="">
+      <img src="./assets/eggalt.svg" alt="">
+      <img src="./assets/fastfood.svg" alt="">
+      <img src="./assets/grocery.svg" alt="">
+      <img src="./assets/hamburger.svg" alt="">
+      <img src="./assets/icecream.svg" alt="">
+      <img src="./assets/orange.svg" alt="">
+      <img src="./assets/pizza.svg" alt="">
+      <img src="./assets/restaurant.svg" alt="">
+      <img src="./assets/tea.svg" alt="">
+    </div>
+
+    <div>
+      <img src="./assets/drink.svg" alt="">
+      <img src="./assets/egg.svg" alt="">
+      <img src="./assets/eggalt.svg" alt="">
+      <img src="./assets/fastfood.svg" alt="">
+      <img src="./assets/grocery.svg" alt="">
+      <img src="./assets/hamburger.svg" alt="">
+      <img src="./assets/icecream.svg" alt="">
+      <img src="./assets/orange.svg" alt="">
+      <img src="./assets/pizza.svg" alt="">
+      <img src="./assets/restaurant.svg" alt="">
+      <img src="./assets/tea.svg" alt="">
+
+      <img src="./assets/drink.svg" alt="">
+      <img src="./assets/egg.svg" alt="">
+      <img src="./assets/eggalt.svg" alt="">
+      <img src="./assets/fastfood.svg" alt="">
+      <img src="./assets/grocery.svg" alt="">
+      <img src="./assets/hamburger.svg" alt="">
+      <img src="./assets/icecream.svg" alt="">
+      <img src="./assets/orange.svg" alt="">
+      <img src="./assets/pizza.svg" alt="">
+      <img src="./assets/restaurant.svg" alt="">
+      <img src="./assets/tea.svg" alt="">
+    </div>
+
+    <div>
+      <img src="./assets/drink.svg" alt="">
+      <img src="./assets/egg.svg" alt="">
+      <img src="./assets/eggalt.svg" alt="">
+      <img src="./assets/fastfood.svg" alt="">
+      <img src="./assets/grocery.svg" alt="">
+      <img src="./assets/hamburger.svg" alt="">
+      <img src="./assets/icecream.svg" alt="">
+      <img src="./assets/orange.svg" alt="">
+      <img src="./assets/pizza.svg" alt="">
+      <img src="./assets/restaurant.svg" alt="">
+      <img src="./assets/tea.svg" alt="">
+
+      <img src="./assets/drink.svg" alt="">
+      <img src="./assets/egg.svg" alt="">
+      <img src="./assets/eggalt.svg" alt="">
+      <img src="./assets/fastfood.svg" alt="">
+      <img src="./assets/grocery.svg" alt="">
+      <img src="./assets/hamburger.svg" alt="">
+      <img src="./assets/icecream.svg" alt="">
+      <img src="./assets/orange.svg" alt="">
+      <img src="./assets/pizza.svg" alt="">
+      <img src="./assets/restaurant.svg" alt="">
+      <img src="./assets/tea.svg" alt="">
+    </div>
+
+    <div>
+      <img src="./assets/drink.svg" alt="">
+      <img src="./assets/egg.svg" alt="">
+      <img src="./assets/eggalt.svg" alt="">
+      <img src="./assets/fastfood.svg" alt="">
+      <img src="./assets/grocery.svg" alt="">
+      <img src="./assets/hamburger.svg" alt="">
+      <img src="./assets/icecream.svg" alt="">
+      <img src="./assets/orange.svg" alt="">
+      <img src="./assets/pizza.svg" alt="">
+      <img src="./assets/restaurant.svg" alt="">
+      <img src="./assets/tea.svg" alt="">
+
+      <img src="./assets/drink.svg" alt="">
+      <img src="./assets/egg.svg" alt="">
+      <img src="./assets/eggalt.svg" alt="">
+      <img src="./assets/fastfood.svg" alt="">
+      <img src="./assets/grocery.svg" alt="">
+      <img src="./assets/hamburger.svg" alt="">
+      <img src="./assets/icecream.svg" alt="">
+      <img src="./assets/orange.svg" alt="">
+      <img src="./assets/pizza.svg" alt="">
+      <img src="./assets/restaurant.svg" alt="">
+      <img src="./assets/tea.svg" alt="">
+    </div>
+  </figure>
+
+  <nav>
+    <a href="/" class="logo" >fooloc</a>
+
+    <div class="drop-down">
+      <button id="manage">Manage</button>
+      
+      <div class="drop-down-menu-wrapper">
+        <div>
+          <a href="business.html">Business</a>
+          <a href="product.html">Products</a>
+          <a href="#">Workers</a>
+        </div>
+      </div>
+    </div>
+    <div class="drop-down">
+      <button>Explore</button>
+      
+      <div class="drop-down-menu-wrapper">
+        <div>
+          <a href="#">Popular Business</a>
+          <a href="#">Most liked reviews</a>
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <a class="btn" id="log-in" href="log-in.html">Log-in</a>
+    <a class="accent btn" href="sign-up.html">Sign-up</a>
+  </nav>
+
+  <section class="card">
+    <h1 class="heading">Log-in</h1>
+    <form id="form" class="padded" action="index.html" onsubmit="return module.handleLogin()" method="post" novalidate>
+      <div class="text-field">
+        <input form="form" id="user-email" type="email" placeholder=" " onfocus="module.restoreToValidState(this)">
+        <label for="user-email">Email</label>
+      </div>
+      
+      <div class="text-field">
+        <input form="form" id="user-password" type="password" placeholder=" " onfocus="module.restoreToValidState(this)">
+        <label for="user-password">Password</label>
+      </div>
+      
+      <a href="/">Did you forget your password?</a>
+      <div>Don't have an account yet?: <a href="/sign-up.html">Sign-up</a></div>
+
+      <div id="buttons">
+        <button class="btn" type="button" onclick="">Cancel</button>
+        <button class="btn accent" type="submit">Submit</button>
+      </div>
+    </form>  
+  </section>
+
+  <script>
+    const module = {};
+  </script>
+  <script type="module">
+    import {restoreToValidState, isEmailValid, isPasswordValid} from "./modules/validation.js"
+
+    const handleLogin = () => {
+      const emailNode = document.querySelector("#user-email");
+      const passwordNode = document.querySelector("#user-password");
+      
+      const emailValid = isEmailValid(emailNode.value);
+      const passwordValid = isPasswordValid(passwordNode.value);
+
+      if(!emailValid){
+        emailNode.parentElement.classList.add("invalid");
+      }
+      if(!passwordValid){
+        passwordNode.parentElement.classList.add("invalid");
+      }
+
+      return emailValid && passwordValid;
+    }
+
+    module.restoreToValidState = restoreToValidState;
+    module.handleLogin = handleLogin;
+  </script>
+</body>
+</html>

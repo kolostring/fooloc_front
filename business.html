@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Business</title>
+  <link rel="shortcut icon" href="favicon.svg" type="image/x-icon">
+
+  <link rel="stylesheet" href="global.css">
+  <style>
+    form{
+      width: 70vw;
+      max-width: 400px;
+    }
+
+    section{
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      height: fit-content;
+    }
+
+    body{
+      background-color: hsl(var(--color-freesia), 100%);
+    }
+
+    body::after{
+      z-index: -10;
+      background-color: hsl(var(--color-baby-blue), 35%);
+    }
+
+    body::before{
+      background-color: hsl(var(--color-baby-blue), 15%);
+    }
+
+    #buttons{
+      display: flex;
+      width: 100%;
+      gap: 0.6rem;
+      justify-content: end;
+    }
+
+    #form{
+      display: flex;
+      flex-direction: column;
+    }
+
+    .img-field{
+      aspect-ratio: 21/9;
+      margin-inline: 0.4rem;
+      margin-bottom: 2rem;
+      border: 0.2rem solid hsl(var(--color-baby-blue));
+      outline: 0.3rem solid var(--accent);
+    }
+  </style>
+
+</head>
+<body class="animated-liquid" onload="module.handleImageSelect()">
+  
+  <nav>
+    <a href="/" class="logo" >fooloc</a>
+
+    <div class="drop-down">
+      <button id="manage">Manage</button>
+      
+      <div class="drop-down-menu-wrapper">
+        <div>
+          <a href="business.html">Business</a>
+          <a href="product.html">Products</a>
+          <a href="#">Workers</a>
+        </div>
+      </div>
+    </div>
+    <div class="drop-down">
+      <button>Explore</button>
+      
+      <div class="drop-down-menu-wrapper">
+        <div>
+          <a href="#">Popular Business</a>
+          <a href="#">Most liked reviews</a>
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <a class="btn" id="log-in" href="log-in.html">Log-in</a>
+    <a class="accent btn" href="sign-up.html">Sign-up</a>
+  </nav>
+
+  <section class="card" >
+    <h1 class="heading">Business</h1>
+    <form id="form" class="padded" onsubmit="return module.validateForm()" method="post" action="/"  novalidate>
+
+        <div class="img-field" >
+          <input form="form" id="business-image" value="" type="file" accept="image/png, image/jpeg" onchange="module.handleImageSelect()">
+          <img id="business-image-preview" src="./assets/restaurant-filled.svg" alt="">
+          <label for="user-img">Business Picture</label>
+        </div>
+
+        <div class="text-field">
+          <input form="form" onfocus="module.restoreToValidState(this)" type="text" id="business-name" placeholder="" required>
+          <label for="business-name">Name</label>
+        </div>
+
+        <div class="text-field">
+          <textarea id="business-description" form="form" onfocus="module.restoreToValidState(this)" cols="30" rows="6" placeholder=" "  required></textarea>
+          <label for="user-email">Description</label>
+        </div>
+
+      <div id="buttons">
+        <button class="btn ">Cancel</button>
+        <button class="btn accent" form="form" type="submit">Register</button>
+      </div>
+    </form>
+  </section>
+
+  <script>
+    const module = {};
+  </script>
+  <script type="module">
+    import {restoreToValidState} from "./modules/validation.js"
+
+    const handleImageSelect = () => {
+      const userImageNode = document.querySelector("#business-image");
+      const userImagePreviewNode = document.querySelector("#business-image-preview");
+
+      userImagePreviewNode.src = URL.createObjectURL(userImageNode.files[0]);
+    }
+
+    const validateForm = () => {
+      const businessName = document.querySelector("#business-name");
+      const businessDescription = document.querySelector("#business-description");
+
+      const businessNameValid = businessName.value.length >= 4;
+      const businessDescriptionValid = businessDescription.value.length >= 4;
+
+      if(!businessNameValid){
+        businessName.parentElement.classList.add("invalid");
+      }
+      if(!businessDescriptionValid){
+        businessDescription.parentElement.classList.add("invalid");
+      }
+
+      return businessNameValid && businessDescriptionValid;
+    }
+
+    module.restoreToValidState = restoreToValidState;
+    module.handleImageSelect = handleImageSelect;
+    module.validateForm = validateForm;
+    
+  </script>
+</body>
+</html>

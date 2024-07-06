@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign-up</title>
+  <link rel="shortcut icon" href="favicon.svg" type="image/x-icon">
+
+  <link rel="stylesheet" href="global.css">
+  <style>
+    form{
+      width: 70vw;
+      max-width: 400px;
+    }
+
+    section{
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      height: fit-content;
+    }
+
+    body{
+      background-color: hsl(var(--color-salmon), 70%);
+    }
+
+    body::after{
+      z-index: -10;
+      background-color: hsl(var(--color-freesia), 55%);
+    }
+
+    body::before{
+      background-color: hsl(var(--color-freesia), 35%);
+    }
+
+    #buttons{
+      display: flex;
+      width: 100%;
+      margin-top: 3rem;
+      gap: 0.6rem;
+      justify-content: end;
+    }
+
+    #user-basic-info{
+      background-color: hsl(var(--color-aquamarine), 25%);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      width: 100%;
+      padding: 1rem;
+      margin: -1rem;
+      margin-bottom: 2rem;
+    }
+
+    .img-field{
+      grid-row: span 2;
+      width: 8rem;
+      margin-right: 1rem;
+      border-radius: 100%;
+      border: 0.2rem solid hsl(var(--color-baby-blue));
+      outline: 0.3rem solid var(--accent);
+    }
+  </style>
+
+</head>
+<body class="animated-liquid" onload="module.handleImageSelect()">
+  <nav>
+    <a href="/" class="logo" >fooloc</a>
+
+    <div class="drop-down">
+      <button id="manage">Manage</button>
+      
+      <div class="drop-down-menu-wrapper">
+        <div>
+          <a href="business.html">Business</a>
+          <a href="product.html">Products</a>
+          <a href="#">Workers</a>
+        </div>
+      </div>
+    </div>
+    <div class="drop-down">
+      <button>Explore</button>
+      
+      <div class="drop-down-menu-wrapper">
+        <div>
+          <a href="#">Popular Business</a>
+          <a href="#">Most liked reviews</a>
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <a class="btn" id="log-in" href="log-in.html">Log-in</a>
+    <a class="accent btn" href="sign-up.html">Sign-up</a>
+  </nav>
+
+  <section class="card" >
+    <h1 class="heading">Sign-up</h1>
+    <form id="form" class="padded" onsubmit="return module.validateForm()" method="post" action="/"  novalidate>
+
+      <div id="user-basic-info">
+        <div class="img-field" >
+          <input form="form" id="user-image" value="" type="file" accept="image/png, image/jpeg" onchange="module.handleImageSelect()">
+          <img id="user-image-preview" src="./assets/egg-filled.svg" alt="">
+          <label for="user-img">Profile Picture</label>
+        </div>
+
+        <div class="text-field">
+          <input form="form" onfocus="module.restoreToValidState(this)" type="text" id="user-nick" placeholder="" required>
+          <label for="user-nick">Nickname</label>
+        </div>
+
+        <div class="text-field">
+          <input form="form" onfocus="module.restoreToValidState(this)" type="email" id="user-email" placeholder="" required>
+          <label for="user-email">Email</label>
+        </div>
+
+      </div>
+
+      <div class="text-field">
+        <input form="form" onfocus="module.restoreToValidState(this)" type="password" id="user-password" placeholder="" required>
+        <label for="user-password">Password</label>
+      </div>
+
+      <div class="text-field">
+        <input form="form" onfocus="module.restoreToValidState(this)" type="password" id="user-password-confirmation" placeholder="" required>
+        <label for="user-password-confirmation">Password Confirmation</label>
+      </div>
+
+      <div>Do you have an account already?: <a href="/log-in.html">Log-in</a></div>
+
+      <div id="buttons">
+        <button class="btn ">Cancel</button>
+        <button class="btn accent" form="form" type="submit">Register</button>
+      </div>
+    </form>
+  </section>
+
+  <script>
+    const module = {};
+  </script>
+  <script type="module">
+    import {restoreToValidState, isEmailValid, isPasswordValid} from "./modules/validation.js"
+
+    const handleImageSelect = () => {
+      const userImageNode = document.querySelector("#user-image");
+      const userImagePreviewNode = document.querySelector("#user-image-preview");
+
+      userImagePreviewNode.src = URL.createObjectURL(userImageNode.files[0]);
+    }
+
+    const validateForm = () => {
+      const nickNode = document.querySelector("#user-nick");
+      const emailNode = document.querySelector("#user-email");
+      const passwordNode = document.querySelector("#user-password");
+      const passwordConfirmationNode = document.querySelector("#user-password-confirmation");
+
+      const nickValid = nickNode.value.length >= 4;
+      const emailValid = isEmailValid(emailNode.value);
+      const passwordValid = isPasswordValid(passwordNode.value);
+      const passwordConfirmationValid = passwordNode.value !== "" && passwordNode.value === passwordConfirmationNode.value;
+
+      if(!nickValid){
+        nickNode.parentElement.classList.add("invalid");
+      }
+      if(!emailValid){
+        emailNode.parentElement.classList.add("invalid");
+      }
+      if(!passwordValid){
+        passwordNode.parentElement.classList.add("invalid");
+      }
+      if(!passwordConfirmationValid){
+        passwordConfirmationNode.parentElement.classList.add("invalid");
+      }
+
+      return nickValid && emailValid && passwordValid && passwordConfirmationValid;
+    }
+
+    module.handleImageSelect = handleImageSelect;
+    module.validateForm = validateForm;
+    module.restoreToValidState = restoreToValidState;
+  </script>
+</body>
+</html>

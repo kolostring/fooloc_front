@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FOOLOC</title>
+  <link rel="shortcut icon" href="favicon.svg" type="image/x-icon">
+  <link rel="stylesheet" href="global.css">
+
+  <style>
+    body{
+      background-color: hsl(var(--color-freesia));
+    }
+
+    .logo-xl{
+      color: hsl(var(--color-dark-aquamarine));
+    }
+
+    section{
+      display: grid;
+      width: 100svw;
+      overflow-x: hidden;
+    }
+
+    section .heading{
+      padding: 1rem;
+      grid-column: span 2;
+      font-size: 6rem;
+    }
+    
+    section h2{
+      padding: 1rem;
+      font-family: var(--font-display);
+      font-size: 3.7rem;
+    }
+
+    section .card{
+      grid-column: 2;
+      width: fit-content;
+    }
+
+    section .card h1 {
+      padding: 1rem;
+      font-family: var(--font-display);
+      font-size: 3rem;
+    }
+
+    .marquee{
+      background: hsl(var(--color-dark-aquamarine), 0%);
+      opacity: 0.3;
+      filter: none;
+      bottom: 0;
+    }
+
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/" class="logo" >fooloc</a>
+
+    <div class="drop-down">
+      <button id="manage">Manage</button>
+      
+      <div class="drop-down-menu-wrapper">
+        <div>
+          <a href="business.html">Business</a>
+          <a href="product.html">Products</a>
+          <a href="#">Workers</a>
+        </div>
+      </div>
+    </div>
+    <div class="drop-down">
+      <button>Explore</button>
+      
+      <div class="drop-down-menu-wrapper">
+        <div>
+          <a href="#">Popular Business</a>
+          <a href="#">Most liked reviews</a>
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <a class="btn" id="log-in" href="log-in.html">Log-in</a>
+    <a class="accent btn" href="sign-up.html">Sign-up</a>
+  </nav>
+
+  <section>
+    <h1 class="heading">Welcome to <span class="logo-xl">FOOLOC</span>!</h1>
+    <div>
+      <h2>The lead management software for finding <b>gastronomic services</b>, <b>food rating</b> and <b>business growing</b>.</h2>
+    </div>
+
+      <figure class="marquee">
+        <div>
+          <img src="./assets/drink.svg" alt="">
+          <img src="./assets/egg.svg" alt="">
+          <img src="./assets/eggalt.svg" alt="">
+          <img src="./assets/fastfood.svg" alt="">
+          <img src="./assets/grocery.svg" alt="">
+          <img src="./assets/hamburger.svg" alt="">
+          <img src="./assets/icecream.svg" alt="">
+          <img src="./assets/orange.svg" alt="">
+          <img src="./assets/pizza.svg" alt="">
+          <img src="./assets/restaurant.svg" alt="">
+          <img src="./assets/tea.svg" alt="">
+    
+          <img src="./assets/drink.svg" alt="">
+          <img src="./assets/egg.svg" alt="">
+          <img src="./assets/eggalt.svg" alt="">
+          <img src="./assets/fastfood.svg" alt="">
+          <img src="./assets/grocery.svg" alt="">
+          <img src="./assets/hamburger.svg" alt="">
+          <img src="./assets/icecream.svg" alt="">
+          <img src="./assets/orange.svg" alt="">
+          <img src="./assets/pizza.svg" alt="">
+          <img src="./assets/restaurant.svg" alt="">
+          <img src="./assets/tea.svg" alt="">
+        </div>
+      </figure>
+  </section>
+</body>
+</html>
