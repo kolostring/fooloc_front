@@ -326,8 +326,7 @@ hr {
   outline: 2px solid var(--danger);
 }
 
-.text-field::after {
-  content: "invalid field";
+.text-field > .error {
   color: var(--danger);
   margin-top: 0.1rem;
   font-size: smaller;
@@ -339,7 +338,7 @@ hr {
   -o-transition: opacity 50ms ease-in;
 }
 
-.text-field.invalid::after {
+.text-field.invalid > .error {
   opacity: 1;
 }
 

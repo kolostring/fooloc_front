@@ -69,35 +69,39 @@
 
   <section class="card" >
     <h1 class="heading">Sign-up</h1>
-    <form id="form" class="padded" onsubmit="return module.validateForm()" method="post" action="/"  novalidate>
+    <form id="form" class="padded" onsubmit="module.onSubmit(event)" novalidate>
 
       <div id="user-basic-info">
         <div class="img-field" >
-          <input form="form" id="user-image" value="" type="file" accept="image/png, image/jpeg" onchange="module.handleImageSelect()">
+          <input form="form" id="user-image" value="" type="file" accept="image/png, image/jpeg" name="image_url" onchange="module.handleImageSelect()">
           <img id="user-image-preview" src="./assets/egg-filled.svg" alt="">
           <label for="user-img">Profile Picture</label>
         </div>
 
         <div class="text-field">
-          <input form="form" onfocus="module.restoreToValidState(this)" type="text" id="user-nick" placeholder="" required>
+          <input form="form" onfocus="module.restoreToValidState(this)" type="text" id="user-nick" name="username" placeholder="" required>
           <label for="user-nick">Nickname</label>
+          <p class="error">ERROR</p>
         </div>
 
         <div class="text-field">
-          <input form="form" onfocus="module.restoreToValidState(this)" type="email" id="user-email" placeholder="" required>
+          <input form="form" onfocus="module.restoreToValidState(this)" type="email" name="email" id="user-email" placeholder="" required>
           <label for="user-email">Email</label>
+          <p class="error">ERROR</p>
         </div>
 
       </div>
 
       <div class="text-field">
-        <input form="form" onfocus="module.restoreToValidState(this)" type="password" id="user-password" placeholder="" required>
+        <input form="form" onfocus="module.restoreToValidState(this)" type="password" name="password" id="user-password" placeholder="" required>
         <label for="user-password">Password</label>
+        <p class="error">ERROR</p>
       </div>
 
       <div class="text-field">
         <input form="form" onfocus="module.restoreToValidState(this)" type="password" id="user-password-confirmation" placeholder="" required>
         <label for="user-password-confirmation">Password Confirmation</label>
+        <p class="error">ERROR</p>
       </div>
 
       <div>Do you have an account already?: <a href="/log-in.html">Log-in</a></div>
@@ -135,23 +139,60 @@
 
       if(!nickValid){
         nickNode.parentElement.classList.add("invalid");
+        document.querySelector("#user-nick ~ .error").innerHTML = "The nickname is too short";
       }
       if(!emailValid){
         emailNode.parentElement.classList.add("invalid");
+        document.querySelector("#user-email ~ .error").innerHTML = "Invalid email";
       }
       if(!passwordValid){
         passwordNode.parentElement.classList.add("invalid");
+        document.querySelector("#user-password ~ .error").innerHTML = "The password is too short";
       }
       if(!passwordConfirmationValid){
         passwordConfirmationNode.parentElement.classList.add("invalid");
+        document.querySelector("#user-password-confirmation ~ .error").innerHTML = "Invalid password confirmation";
       }
 
       return nickValid && emailValid && passwordValid && passwordConfirmationValid;
     }
 
+    const onSubmit = async (e) => {
+      e.preventDefault();
+      if(validateForm() === false){
+        return false;
+      }
+      const formData = new FormData(e.target)
+
+      const response = await fetch("http://127.0.0.1:8000/api/account/register", {
+        method: 'POST',
+        body: formData
+      })
+      
+      console.log(response);
+      if(response.ok){
+        document.querySelector(".card").innerHTML = `<h1 class="heading">Success</h1> <p style="height: 20rem; padding: 1rem; font-size: 1.7rem; max-width: 35rem"> <span style= "font-weight: bold;font-size: 2.3rem;">Thanks for registrating on our platform.</span><br/><br/>Shortly, you will be redirected to the login.</p>`
+        
+        setTimeout(()=>{
+          location.replace("/log-in.html");
+        }, 5000)
+      }
+      
+      else{
+        const data = await response.json();
+        console.log(data);
+
+        Object.entries(data).forEach(([key, value])=>{
+          document.querySelector(`input[name=${key}]`).parentElement.classList.add("invalid")
+          document.querySelector(`input[name=${key}] ~ .error`).innerHTML = value;
+        })
+      }
+    }
+
     module.handleImageSelect = handleImageSelect;
     module.validateForm = validateForm;
     module.restoreToValidState = restoreToValidState;
+    module.onSubmit = onSubmit
   </script>
 </body>
 </html>
