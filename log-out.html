@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign-up</title>
+  <link rel="shortcut icon" href="favicon.svg" type="image/x-icon">
+
+  <link rel="stylesheet" href="global.css">
+  <style>
+    form{
+      width: 70vw;
+      max-width: 400px;
+    }
+
+    section{
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      height: fit-content;
+    }
+
+    body{
+      background-color: hsl(var(--color-salmon), 70%);
+    }
+
+    body::after{
+      z-index: -10;
+      background-color: hsl(var(--color-freesia), 55%);
+    }
+
+    body::before{
+      background-color: hsl(var(--color-freesia), 35%);
+    }
+  </style>
+
+  <script type="module" src="components/index.js"></script>
+</head>
+<body class="animated-liquid" onload="module.handleImageSelect()">
+  <nav class="slot__navbar">
+  </nav>
+
+  <section class="card" >
+    <h1 class="heading">Login out</h1> 
+    <p style="height: 10rem; padding: 1rem; font-size: 1.7rem; max-width: 35rem">Please wait a few seconds. <br/><br/>Shortly, you will be redirected to the home page.</p>
+  </section>
+
+  <script>
+    const sessionToken = sessionStorage.getItem("fooloc_token");
+    fetch("http://127.0.0.1:8000/api/account/logout", {
+      method: "POST",
+      headers: {
+        Authorization: "Token " + sessionToken,
+    },
+    }).then((response)=>{
+      console.log(response);
+      if(response.ok){
+        sessionStorage.removeItem("fooloc_token");
+        location.replace("/");
+      }else{
+        console.error("Something bad happened");
+      }
+    })
+  </script>
+</body>
+</html>

@@ -24,7 +24,7 @@ const userMenu = (userName, email, profilePic) => String.raw`
         <a href="business.html">Manage Business</a>
         <a href="product.html">Manage Products</a>
         <hr/>
-        <a href="#" class="danger">Log-out</a>
+        <a href="/log-out.html" class="danger">Log-out</a>
       </div>
     </div>
   </div>
