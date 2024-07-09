@@ -65,6 +65,14 @@ textarea{
   -o-transform: scale(0.96);
 }
 
+.ml-auto{
+  margin-left: auto;
+}
+
+.mr-auto{
+  margin-right: auto;
+}
+
 .padded{
   padding: 1rem;
 }
@@ -124,6 +132,7 @@ textarea{
 } 
 
 nav{
+  min-height: 76px;
   padding-inline: 1rem;
   display: flex;
   gap: 0.4rem;
@@ -138,6 +147,14 @@ nav > .logo + a {
 nav > a {
   font-size: large;
   margin-right: 1rem;
+}
+
+.w-full{
+  width: 100%;
+}
+
+.flex{
+  display: flex;
 }
 
 .card{
@@ -161,11 +178,7 @@ nav > a {
     color: hsl(var(--color-freesia));
 }
 
-.drop-down{
-  position: relative;
-}
-
-.drop-down > button {
+.big-btn{
   cursor: pointer;
   background-color: hsl(var(--color-aquamarine));
   border: 0.3rem solid hsl(var(--color-aquamarine));
@@ -173,6 +186,29 @@ nav > a {
 
   font-size: large;
   color: white;
+}
+
+.user{
+  background-image: url("./assets/egg-filled.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  aspect-ratio: 1/1;
+  border: 0.1rem solid hsl(var(--color-baby-blue));
+  outline: 0.2rem solid hsl(var(--color-aquamarine));
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+}
+
+.drop-down{
+  position: relative;
+}
+
+.drop-down button {
+  cursor: pointer;
 }
 
 .drop-down > .drop-down-menu-wrapper {
@@ -200,6 +236,14 @@ nav > a {
   -o-transform: translateY(0rem);
 }
 
+.drop-down > .drop-down-menu-wrapper.rounded{
+  border-radius: 0.4rem;
+  -webkit-border-radius: 0.4rem;
+  -moz-border-radius: 0.4rem;
+  -ms-border-radius: 0.4rem;
+  -o-border-radius: 0.4rem;
+}
+
 .drop-down:focus-within > .drop-down-menu-wrapper {
   grid-template-rows: 1fr;
 }
@@ -212,30 +256,20 @@ nav > a {
 }
 
 .drop-down > .drop-down-menu-wrapper > div > a {
+  display: grid;
+  grid-template-columns: auto 1fr;
   color: white;
   padding: 0.8rem 1rem;
   text-decoration: none;
 }
 
-.drop-down a::before{
-  font-weight: 600;
-  color: hsl(var(--color-dark-freesia));
-  content: ">";
-  opacity: 0;
-  margin-right: 0.3rem;
+hr {
+  background: hsl(var(--color-baby-blue), 40%);
+  height: 0.09rem;
 }
 
-.drop-down a:hover::before{
-  opacity: 1;
-}
-
-.drop-down a:hover{
+.drop-down > .drop-down-menu-wrapper > div > a:hover{
   opacity: 0.65;
-}
-
-.drop-down a{
-  display: grid;
-  grid-template-columns: auto 1fr;
 }
 
 .text-field {
@@ -529,8 +563,4 @@ object {
   border-width: 0;
   border-style: solid;
   border-color: currentColor;
-}
-
-#log-in{
-  margin-left: auto;
 }

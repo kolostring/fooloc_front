@@ -46,6 +46,7 @@
     }
 
     .marquee{
+      max-width: 100svw;
       background: hsl(var(--color-dark-aquamarine), 0%);
       opacity: 0.3;
       filter: none;
@@ -53,39 +54,12 @@
     }
 
   </style>
+
+  <script type="module" src="components/index.js"></script>
 </head>
 <body>
-  <nav>
-    <a href="/" class="logo" >fooloc</a>
-
-    <div class="drop-down">
-      <button id="manage">Manage</button>
-      
-      <div class="drop-down-menu-wrapper">
-        <div>
-          <a href="business.html">Business</a>
-          <a href="product.html">Products</a>
-          <a href="#">Workers</a>
-        </div>
-      </div>
-    </div>
-    <div class="drop-down">
-      <button>Explore</button>
-      
-      <div class="drop-down-menu-wrapper">
-        <div>
-          <a href="#">Popular Business</a>
-          <a href="#">Most liked reviews</a>
-        </div>
-      </div>
-      
-    </div>
-    
-
-    <a class="btn" id="log-in" href="log-in.html">Log-in</a>
-    <a class="accent btn" href="sign-up.html">Sign-up</a>
+  <nav class="slot__navbar">
   </nav>
-
   <section>
     <h1 class="heading">Welcome to <span class="logo-xl">FOOLOC</span>!</h1>
     <div>
@@ -120,5 +94,8 @@
         </div>
       </figure>
   </section>
+
+  <script type="module" src="./components/index.js">
+  </script>
 </body>
 </html>
