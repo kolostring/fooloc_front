@@ -155,15 +155,17 @@
 
   <section class="card">
     <h1 class="heading">Log-in</h1>
-    <form id="form" class="padded" action="index.html" onsubmit="return module.handleLogin()" method="post" novalidate>
+    <form id="form" class="padded" action="index.html" onsubmit="module.onSubmit(event)" method="post" novalidate>
       <div class="text-field">
-        <input form="form" id="user-email" type="email" placeholder=" " onfocus="module.restoreToValidState(this)">
+        <input form="form" id="user-email" name="email" type="email" placeholder=" " onfocus="module.restoreToValidState(this)">
         <label for="user-email">Email</label>
+        <p class="error">ERROR</p>
       </div>
       
       <div class="text-field">
-        <input form="form" id="user-password" type="password" placeholder=" " onfocus="module.restoreToValidState(this)">
+        <input form="form" id="user-password" name="password" type="password" placeholder=" " onfocus="module.restoreToValidState(this)">
         <label for="user-password">Password</label>
+        <p class="error">ERROR</p>
       </div>
       
       <a href="/">Did you forget your password?</a>
@@ -182,7 +184,7 @@
   <script type="module">
     import {restoreToValidState, isEmailValid, isPasswordValid} from "./modules/validation.js"
 
-    const handleLogin = () => {
+    const validateForm = () => {
       const emailNode = document.querySelector("#user-email");
       const passwordNode = document.querySelector("#user-password");
       
@@ -191,16 +193,47 @@
 
       if(!emailValid){
         emailNode.parentElement.classList.add("invalid");
+        document.querySelector("#user-email ~ .error").innerHTML = "Invalid email";
       }
       if(!passwordValid){
         passwordNode.parentElement.classList.add("invalid");
+        document.querySelector("#user-password ~ .error").innerHTML = "Password too short";
       }
 
       return emailValid && passwordValid;
     }
 
+    const onSubmit = async (e) => {
+      e.preventDefault();
+      if(validateForm() === false){
+        return false;
+      }
+      const formData = new FormData(e.target)
+
+      const response = await fetch("http://127.0.0.1:8000/api/account/login", {
+        method: 'POST',
+        body: formData
+      })
+      
+      const data = await response.json();
+      console.log(response);
+      console.log(data);
+
+      if(response.ok){
+        sessionStorage.setItem("fooloc_token", data.token);
+        location.replace("/")
+      }
+
+      else{
+        Object.entries(data).forEach(([key, value])=>{
+          document.querySelector(`input[name=${key}]`).parentElement.classList.add("invalid")
+          document.querySelector(`input[name=${key}] ~ .error`).innerHTML = value;
+        })
+      }
+    }
+
     module.restoreToValidState = restoreToValidState;
-    module.handleLogin = handleLogin;
+    module.onSubmit = onSubmit;
   </script>
 </body>
 </html>
